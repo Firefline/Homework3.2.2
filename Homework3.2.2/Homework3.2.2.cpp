@@ -10,10 +10,9 @@ struct bank
     int money = 0;
 };
 
-void change(bank& cash)
+void change(bank* cash, int new_cash)
 {
-    std::cout << "Введите новый баланс: ";
-    std::cin >> cash.money;
+    cash->money = new_cash;
 }
 
 int main(int argc, char** argv)
@@ -21,14 +20,17 @@ int main(int argc, char** argv)
     setlocale(LC_ALL, "Russian");
 
     bank person;
+    int new_balance;
     std::cout << "Введите номер счёта: ";
     std::cin >> person.account;
     std::cout << "Введите имя владельца: ";
     std::cin >> person.name;
     std::cout << "Введите баланс: ";
     std::cin >> person.money;
+    std::cout << "Введите новый баланс: ";
+    std::cin >> new_balance;
 
-    change(person);
+    change(&person, new_balance);
 
     std::cout << "Ваш счёт: " << person.name << ", " << person.account << ", " << person.money << std::endl;
 }
